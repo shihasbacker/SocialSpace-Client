@@ -1,0 +1,23 @@
+.Home{
+    position: relative;
+    display: grid;
+    grid-template-columns: 18rem auto 20rem;
+    gap: 1rem;
+}
+
+@media only screen and (max-width: 1250px) {
+    .Home {
+      grid-template-columns: 18rem auto;
+    }
+    .RightSide {
+      display: none;
+    }
+  }
+  @media only screen and (max-width: 700px) {
+    .Home {
+      grid-template-columns: auto;
+    }
+    .FollowersCard {
+      display: none;
+    }
+  }
