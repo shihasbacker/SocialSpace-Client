@@ -1,5 +1,5 @@
 import axios from "axios";
-const API = axios.create({ baseURL: "http://localhost:4000" });
+const API = axios.create({ baseURL: "https://socialspace.fashionclues.shop" });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
