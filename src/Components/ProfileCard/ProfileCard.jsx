@@ -1,8 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import Cover from "../../img/cover.jpg";
-import Profile from "../../img/profileImg.jpg";
 import { Link, useParams } from "react-router-dom";
 import "./ProfileCard.css";
 import { useState } from "react";
@@ -27,7 +25,7 @@ const ProfileCard = ({ location }) => {
 
   useEffect(()=>{
     setProfile(user)
-  },[])
+  },[user])
   
   return (
     <div className="ProfileCard">
