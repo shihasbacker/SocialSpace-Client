@@ -9,6 +9,7 @@ const Auth = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.authReducer.loading);
   const [isSignUp, setIsSignUp] = useState(true);
+  const [validation, setValidation] = useState(false);
   console.log(loading);
 
   const [data, setData] = useState({
@@ -28,11 +29,26 @@ const Auth = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isSignUp) {
+
+      if (
+        data.firstName === "" ||
+        data.lastName === "" ||
+        data.userName === "" ||
+        data.confirmPassword === "" ||
+        data.password === ""
+      ) {
+        setValidation(true);
+      }
+
       console.log(isSignUp, "hi ");
       data.password === data.confirmpass
         ? dispatch(signUp(data))
         : setConfirmPass(false);
     } else {
+
+      if (data.userName === "" || data.password === "") {
+        setValidation(true);
+      }
       dispatch(logIn(data));
     }
   };
@@ -63,6 +79,16 @@ const Auth = () => {
       <div className="a-right">
         <form action="" className="infoForm authForm" onSubmit={handleSubmit}>
           <h3>{isSignUp ? "Sign up" : "Log In"}</h3>
+
+          <span
+            style={{
+              display: !validation ? "none" : "block",
+              color: "red",
+              fontSize: "12px",
+            }}
+          >
+            * Fields missing
+          </span>
 
           {isSignUp && (
             <div>
