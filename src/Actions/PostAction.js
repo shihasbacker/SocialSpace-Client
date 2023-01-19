@@ -12,14 +12,9 @@ export const getTimelinePosts = (id) => async (dispatch) => {
   }
 };
 
-export const deletePosts = (id,data) => {
-  console.log("inside",data)
-  return (
-      async (dispatch) => {
-      console.log("this is working")
-      const datas = await PostApi.deletePost(id,data);
-      const actionData = datas.data
-      console.log(actionData,"deleted post")
-      dispatch({type:"POST_DELETE",actionData})
-  })
-}
+export const deletePosts = (id, data) => {
+  return async (dispatch) => {
+    await PostApi.deletePost(id, data);
+    dispatch({ type: "POST_DELETE", postId : id });
+  };
+};

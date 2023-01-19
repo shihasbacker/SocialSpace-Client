@@ -19,8 +19,7 @@ const postReducer = (
     return { ...state, loading: false, error: true };
   
     case "POST_DELETE":
-      console.log(action.actionData,"actiondata")
-      return { ...state, posts: action.actionData, uploading: false, error: false };
+      return { ...state, posts: state.posts.filter((value)=> value._id !== action.postId), uploading: false, error: false };
     
   default:
     return state;
