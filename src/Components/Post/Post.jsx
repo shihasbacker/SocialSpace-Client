@@ -37,7 +37,7 @@ const Post = ({ data }) => {
       setUsername(username.data.firstname + " " + username.data.lastname);
     };
     fetchUser();
-  }, []);
+  }, [data]);
 
   const handleLike = () => {
     setLiked((prev) => !prev);
