@@ -18,7 +18,7 @@ const PostShare = () => {
   const desc = useRef();
   const { user } = useSelector((state) => state.authReducer.authData);
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
-  
+
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       let img = event.target.files[0];
@@ -31,30 +31,40 @@ const PostShare = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newPost = {
-      userId: user._id,
-      desc: desc.current.value,
-    };
-    if (image) {
-      const data = new FormData();
-      const filename = Date.now() + image.name;
-      data.append("name", filename);
-      data.append("file", image);
-      newPost.image = filename;
-      console.log(newPost);
-      try {
-        dispatch(uploadImage(data));
-        reset();
-      } catch (error) {
-        console.log(error);
+
+    if (desc.current.value !== "") {
+      const newPost = {
+        userId: user._id,
+        desc: desc.current.value,
+      };
+      if (image) {
+        const data = new FormData();
+        const filename = Date.now() + image.name;
+        data.append("name", filename);
+        data.append("file", image);
+        newPost.image = filename;
+        console.log(newPost);
+        try {
+          dispatch(uploadImage(data));
+          reset();
+        } catch (error) {
+          console.log(error);
+        }
       }
+      dispatch(uploadPost(newPost));
     }
-    dispatch(uploadPost(newPost));
   };
 
   return (
     <div className="PostShare">
-      <img src={user.profilePicture? serverPublic + user.profilePicture : serverPublic + "defaultProfile.png"} alt="" />
+      <img
+        src={
+          user.profilePicture
+            ? serverPublic + user.profilePicture
+            : serverPublic + "defaultProfile.png"
+        }
+        alt=""
+      />
       <div>
         <input ref={desc} required type="text" placeholder="What's happening" />
         <div className="postOptions">
