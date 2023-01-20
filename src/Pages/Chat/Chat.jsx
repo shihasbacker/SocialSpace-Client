@@ -12,7 +12,7 @@ import Conversation from "../../Components/Conversation/Conversation";
 import LogoSearch from "../../Components/LogoSearch/LogoSearch";
 import "./Chat.css";
 import ChatBox from "../../Components/ChatBox/ChatBox";
-import { io } from "socket.io-client";
+import io from "socket.io-client";
 
 const Chat = () => {
   const { user } = useSelector((state) => state.authReducer.authData);
@@ -23,7 +23,7 @@ const Chat = () => {
   const [sendMessage, setSendMessage] = useState(null);
   const [receiveMessage, setReceiveMessage] = useState(null);
   // const socket = useRef();
-  const socket = io("https://socialspace.fashionclues.shop");
+  const socket = io.connect("https://socialspace.fashionclues.shop");
 
   //send message to socket server
   useEffect(() => {
