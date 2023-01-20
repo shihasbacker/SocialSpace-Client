@@ -10,6 +10,7 @@ import { UilTimes } from "@iconscout/react-unicons";
 import { useSelector, useDispatch } from "react-redux";
 import { uploadImage, uploadPost } from "../../Actions/UploadAction";
 
+
 const PostShare = () => {
   const loading = useSelector((state) => state.postReducer.uploading);
   const dispatch = useDispatch();
