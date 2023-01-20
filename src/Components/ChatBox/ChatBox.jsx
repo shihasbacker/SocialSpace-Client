@@ -5,7 +5,7 @@ import { addMessage, getMessages } from "../../Api/MessageRequest";
 import { getUser } from "../../Api/UserRequest";
 import "./ChatBox.css";
 // import { format } from "timeago.js";
-import {moment} from "moment"
+import moment from "moment"
 import InputEmoji from "react-input-emoji";
 
 const ChatBox = ({ chat, currentUser, setSendMessage, receiveMessage }) => {
@@ -116,7 +116,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receiveMessage }) => {
                   }
                 >
                   <span>{message.text}</span>
-                  <span>{moment().format(message.createdAt)}</span>
+                  <span>{moment().format().message.createdAt}</span>
                 </div>
               </>
             ))}
