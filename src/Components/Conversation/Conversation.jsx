@@ -5,6 +5,7 @@ import { getUser } from "../../Api/UserRequest";
 
 const Conversation = ({ data, currentUserId, online }) => {
   const [userData, setUserData] = useState({});
+  
   useEffect(() => {
     const userId = data.members.find((id) => id !== currentUserId);
     const getUserData = async () => {
@@ -17,6 +18,7 @@ const Conversation = ({ data, currentUserId, online }) => {
     };
     getUserData();
   }, []);
+
   return (
     <>
       <div className="conversation follower">

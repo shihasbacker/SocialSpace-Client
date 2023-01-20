@@ -14,6 +14,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receiveMessage }) => {
   const scroll = useRef();
 
   useEffect(() => {
+    console.log('receiveMsg', receiveMessage);
     if (receiveMessage !== null && receiveMessage.chatId === chat._id) {
       setMessages([...messages, receiveMessage]);
     }
