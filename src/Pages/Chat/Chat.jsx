@@ -41,13 +41,13 @@ const Chat = () => {
   }, [user]);
 
   // receive message from the socket server
+  socket.on("receive-message", (data) => {
+    console.log("data received in parent Chat.jsx:", data);
+    setReceiveMessage(data);
+  });
   useEffect(() => {
     console.log('received-message useEffect')
-    socket.on("receive-message", (data) => {
-      console.log("data received in parent Chat.jsx:", data);
-      setReceiveMessage(data);
-    });
-  }, [receiveMessage]);
+  }, []);
 
   useEffect(() => {
     const getChats = async () => {
