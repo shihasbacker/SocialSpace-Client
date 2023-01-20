@@ -13,7 +13,6 @@ import LogoSearch from "../../Components/LogoSearch/LogoSearch";
 import "./Chat.css";
 import ChatBox from "../../Components/ChatBox/ChatBox";
 import { io } from "socket.io-client";
-import { useRef } from "react";
 
 const Chat = () => {
   const { user } = useSelector((state) => state.authReducer.authData);
@@ -23,30 +22,30 @@ const Chat = () => {
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [sendMessage, setSendMessage] = useState(null);
   const [receiveMessage, setReceiveMessage] = useState(null);
-  const socket = useRef();
+  // const socket = useRef();
+  const socket = io("https://socialspace.fashionclues.shop");
 
   //send message to socket server
   useEffect(() => {
     if (sendMessage !== null) {
-      socket.current.emit("send-message", sendMessage);
+      socket.emit("send-message", sendMessage);
     }
   }, [sendMessage]);
 
   useEffect(() => {
-    socket.current = io("https://socialspace.fashionclues.shop");
-    socket.current.emit("new-user-add", user._id);
-    socket.current.on("get-users", (users) => {
+    socket.emit("new-user-add", user._id);
+    socket.on("get-users", (users) => {
       setOnlineUsers(users);
     });
   }, [user]);
 
   // receive message from the socket server
   useEffect(() => {
-    socket.current.on("receive-message", (data) => {
+    socket.on("receive-message", (data) => {
       console.log("data received in parent Chat.jsx:", data);
       setReceiveMessage(data);
     });
-  }, []);
+  }, [socket]);
 
   useEffect(() => {
     const getChats = async () => {
