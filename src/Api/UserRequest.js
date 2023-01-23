@@ -21,3 +21,5 @@ export const followUser = (id, data) => API.put(`/user/${id}/follow`, data);
 export const unFollowUser = (id, data) => API.put(`/user/${id}/unfollow`, data);
 
 export const createChat=((data)=>API.post('/chat/',data));
+
+export const getUserData = (query) => API.post(`/user/getdata`,{data:query})
