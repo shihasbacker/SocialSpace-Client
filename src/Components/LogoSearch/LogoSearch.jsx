@@ -28,14 +28,17 @@ const LogoSearch = () => {
   return (
     <div className="LogoSearch dropdown">
       <img src={Logo} alt="" />
-               
+      <div className="Search">
+        <input
+          type="text"
+          placeholder="#Explore"
+          onChange={(e) => setQuery(e.target.value.toLowerCase())}
+        />
+        <div className="s-icon">
+          <UilSearch />
+        </div>
+      </div>
       <div class="dropdown-content">
-        {/* {place === "chatPage" ?data.map((person)=>(
-        <>
-      <p onClick={()=>setNewUser(person)} style={{cursor:"pointer"}}>{person.firstname}</p>
-      <hr />
-      </>
-      )): */}
         {data.map((person) => (
           <>
             <Link
